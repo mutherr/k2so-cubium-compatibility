@@ -69,5 +69,34 @@ for i, cubicPack in pairs(cube_science_packs) do
 end
 
 -- the space age sciences will be done separately as they have different item requirements
+--TODO: Add space age science packs here
 
--- the cube recipes that use iron and copper plates in their icons will be updated too
+
+-- Update the cube recipes that use iron and copper plates in their icons
+local metal_recipes = {
+  "cube-jelly-ore-advanced-iron",
+  "cube-jelly-ore-advanced-copper",
+}
+
+local metal_icon_paths = {
+  "__Krastorio2Assets__/icons/items/iron-plate.png",
+  "__Krastorio2Assets__/icons/items/copper-plate.png",
+}
+
+for i, metalRecipe in pairs(metal_recipes) do
+  local recipe = data.raw.recipe[metalRecipe]
+  if recipe then
+    recipe.icons = {
+      {
+        icon = "__cubium__/graphics/icons/matter-cube.png",
+        scale = 0.9
+      },
+      {
+        icon = metal_icon_paths[i],
+        scale = 0.6,
+      }
+    }
+  else
+    log("Warning: Could not find recipe for '" .. (metalRecipe or "nil") .. "'")
+  end
+end
