@@ -8,5 +8,5 @@
                    "space-age >= 2.0",
                    "cubium >= 1.0.28",
                    "Krastorio2-spaced-out >= 1.4.4"],
-  "description": "This mod adds compatibility for Krastorio 2 Spaced Out and Cubium."
+  "description": "This mod adds compatibility for Krastorio 2 Spaced Out and Cubium. It's still in development, and feel free to post any issues in the git repo."
 }
