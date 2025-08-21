@@ -48,6 +48,7 @@ for i, cubicPack in pairs(cube_science_packs) do
     end
 
     table.insert(newIngredients, {type = "fluid", name = "dream-concentrate", amount = concentrate_amounts[i]})
+    table.insert(newIngredients, {type = "item", name = "energized-microcube", amount = 1})
     cubeRecipe.ingredients = newIngredients
 
     -- Update the icon to include the Krastorio tech card icon in lieu of the base icon
@@ -70,6 +71,60 @@ end
 
 -- the space age sciences will be done separately as they have different item requirements
 --TODO: Add space age science packs here
+-- local adv_cube_science_packs = {
+--   "metallurgic-science-pack-cubic",
+--   "electromagnetic-science-pack-cubic",
+--   "cryogenic-science-pack-cubic",
+--   "agricultural-science-pack-cubic",
+--   "prometheum-science-pack-cubic",
+-- }
+
+-- local adv_kr_tech_cards = {
+--   "metallurgic-science-pack",
+--   "electromagnetic-science-pack",
+--   "cryogenic-science-pack",
+--   "agricultural-science-pack",
+--   "prometheum-science-pack",
+-- }
+
+-- local concentrate_amounts = {
+--   200,
+--   200,
+--   200,
+--   0,
+--   200,
+-- }
+
+-- for i, cubicPack in pairs(adv_cube_science_packs) do
+--   local cubeRecipe = data.raw.recipe[cubicPack]
+--   local baseRecipe = data.raw.recipe[adv_kr_tech_cards[i]]
+
+--   if cubeRecipe and baseRecipe then
+--     local newIngredients = {}
+--     for _, ingredient in pairs(baseRecipe.ingredients or {}) do
+--       table.insert(newIngredients, ingredient)
+--     end
+
+--     table.insert(newIngredients, {type = "fluid", name = "dream-concentrate", amount = concentrate_amounts[i]})
+--     cubeRecipe.ingredients = newIngredients
+
+--     -- Update the icon to include the Krastorio tech card icon in lieu of the base icon
+--     cubeRecipe.icons = 
+--       {
+--         {
+--           icon = "__cubium__/graphics/icons/matter-cube.png",
+--           scale = 0.9
+--         },
+--         {
+--           icon = iconPaths[i],
+--           scale = 0.6,
+--         }
+--       }
+--   else
+--     log("Warning: Could not find recipe for '" .. (cubicPack or "nil") ..
+--         "' or base recipe for '" .. (kr_tech_cards[i] or "nil") .. "'")
+--   end
+-- end
 
 
 -- Update the cube recipes that use iron and copper plates in their icons
