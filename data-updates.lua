@@ -121,7 +121,19 @@ for i, cubicPack in pairs(adv_cube_science_packs) do
     else
       table.insert(newIngredients, {type = "item", name = "inverted-microcube", amount = 1})
     end
-    cubeRecipe.ingredients = newIngredients
+
+    local newResults = {}
+    for _, result in pairs(baseRecipe.results or {}) do
+      local name = result.name
+      if name:find("card") then
+        table.insert(newResults, {type = "item", name = name, amount = 5})
+      else
+        table.insert(newResults, result)
+      end
+    end
+    cubeRecipe.results = newResults
+
+    cubeRecipe.localised_name = baseRecipe.localised_name
 
     -- Update the icon to include the Krastorio tech card icon in lieu of the base icon
     cubeRecipe.icons = 
