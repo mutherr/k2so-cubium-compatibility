@@ -71,60 +71,75 @@ end
 
 -- the space age sciences will be done separately as they have different item requirements
 --TODO: Add space age science packs here
--- local adv_cube_science_packs = {
---   "metallurgic-science-pack-cubic",
---   "electromagnetic-science-pack-cubic",
---   "cryogenic-science-pack-cubic",
---   "agricultural-science-pack-cubic",
---   "prometheum-science-pack-cubic",
--- }
+local adv_cube_science_packs = {
+  "metallurgic-science-pack-cubic",
+  "electromagnetic-science-pack-cubic",
+  "cryogenic-science-pack-cubic",
+  "agricultural-science-pack-cubic",
+  "promethium-science-pack-cubic",
+}
 
--- local adv_kr_tech_cards = {
---   "metallurgic-science-pack",
---   "electromagnetic-science-pack",
---   "cryogenic-science-pack",
---   "agricultural-science-pack",
---   "prometheum-science-pack",
--- }
+local adv_kr_tech_cards = {
+  "metallurgic-science-pack",
+  "electromagnetic-science-pack",
+  "cryogenic-science-pack",
+  "agricultural-science-pack",
+  "promethium-science-pack",
+}
 
--- local concentrate_amounts = {
---   200,
---   200,
---   200,
---   0,
---   200,
--- }
+local concentrate_amounts = {
+  200,
+  200,
+  200,
+  0,
+  200,
+}
 
--- for i, cubicPack in pairs(adv_cube_science_packs) do
---   local cubeRecipe = data.raw.recipe[cubicPack]
---   local baseRecipe = data.raw.recipe[adv_kr_tech_cards[i]]
+iconPaths = {
+  "__Krastorio2-spaced-out__/graphics/icons/metallurgy-tech-card.png",
+  "__Krastorio2-spaced-out__/graphics/icons/electromagnetic-tech-card.png",
+  "__Krastorio2-spaced-out__/graphics/icons/cryogenic-tech-card.png",
+  "__Krastorio2-spaced-out__/graphics/icons/agricultural-tech-card.png",
+  "__Krastorio2-spaced-out__/graphics/icons/promethium-tech-card.png",
+}
 
---   if cubeRecipe and baseRecipe then
---     local newIngredients = {}
---     for _, ingredient in pairs(baseRecipe.ingredients or {}) do
---       table.insert(newIngredients, ingredient)
---     end
+for i, cubicPack in pairs(adv_cube_science_packs) do
+  local cubeRecipe = data.raw.recipe[cubicPack]
+  local baseRecipe = data.raw.recipe[adv_kr_tech_cards[i]]
 
---     table.insert(newIngredients, {type = "fluid", name = "dream-concentrate", amount = concentrate_amounts[i]})
---     cubeRecipe.ingredients = newIngredients
+  if cubeRecipe and baseRecipe then
+    local newIngredients = {}
+    for _, ingredient in pairs(baseRecipe.ingredients or {}) do
+      table.insert(newIngredients, ingredient)
+    end
 
---     -- Update the icon to include the Krastorio tech card icon in lieu of the base icon
---     cubeRecipe.icons = 
---       {
---         {
---           icon = "__cubium__/graphics/icons/matter-cube.png",
---           scale = 0.9
---         },
---         {
---           icon = iconPaths[i],
---           scale = 0.6,
---         }
---       }
---   else
---     log("Warning: Could not find recipe for '" .. (cubicPack or "nil") ..
---         "' or base recipe for '" .. (kr_tech_cards[i] or "nil") .. "'")
---   end
--- end
+    if concentrate_amounts[i] > 0 then
+      table.insert(newIngredients, {type = "fluid", name = "dream-concentrate", amount = concentrate_amounts[i]})
+    end
+    if i > 1 then
+      table.insert(newIngredients, {type = "item", name = "energized-microcube", amount = 1})
+    else
+      table.insert(newIngredients, {type = "item", name = "inverted-microcube", amount = 1})
+    end
+    cubeRecipe.ingredients = newIngredients
+
+    -- Update the icon to include the Krastorio tech card icon in lieu of the base icon
+    cubeRecipe.icons = 
+      {
+        {
+          icon = "__cubium__/graphics/icons/matter-cube.png",
+          scale = 0.9
+        },
+        {
+          icon = iconPaths[i],
+          scale = 0.6,
+        }
+      }
+  else
+    log("Warning: Could not find recipe for '" .. (cubicPack or "nil") ..
+        "' or base recipe for '" .. (kr_tech_cards[i] or "nil") .. "'")
+  end
+end
 
 
 -- Update the cube recipes that use iron and copper plates in their icons
