@@ -70,7 +70,6 @@ for i, cubicPack in pairs(cube_science_packs) do
 end
 
 -- the space age sciences will be done separately as they have different item requirements
---TODO: Add space age science packs here
 local adv_cube_science_packs = {
   "metallurgic-science-pack-cubic",
   "electromagnetic-science-pack-cubic",
